@@ -41,6 +41,11 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     /* YOUR CODE HERE */
+    if (playerMove === computerMove) {winner='tie';}
+    else if ((playerMove === 'rock' && computerMove === 'scissors') ||
+        (playerMove === 'paper' && computerMove === 'rock') ||
+        (playerMove === 'scissors' && computerMove === 'paper')) {winner='player';}
+        else {winner='computer';}
     return winner;
 }
 
@@ -55,13 +60,12 @@ function playTo(times) {
         var computerMove = getComputerMove();
         var winner = getWinner(playerMove,computerMove);
         console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
-        if (playerMove === computerMove) {console.log("It's a TIE!")}
-        else if ((playerMove === 'rock' && computerMove === 'scissors') ||
-            (playerMove === 'paper' && computerMove === 'rock') ||
-            (playerMove === 'scissors' && computerMove === 'paper')) {
+        if (winner==='tie') {console.log("It's a TIE!");}
+        else if (winner==='player') {
             console.log('PLAYER wins!');
             playerWins += 1;
-        } else {
+        }
+        else {
             console.log('COMPUTER wins!');
             computerWins += 1;
         }
